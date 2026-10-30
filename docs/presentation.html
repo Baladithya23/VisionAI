@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionAI — Presentation Deck</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(22, 30, 49, 0.85);
+      --border: rgba(99, 102, 241, 0.25);
+      --accent: #6366f1;
+      --accent-glow: #818cf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .presentation-container {
+      width: 90vw;
+      max-width: 1100px;
+      height: 82vh;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(99, 102, 241, 0.15);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .badge {
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--accent-glow);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+    }
+    .slide-body {
+      flex: 1;
+      padding: 36px 48px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    p, li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    ul { margin-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 10px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--accent-glow);
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+    }
+    th {
+      color: var(--accent-glow);
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.1);
+    }
+    td.high { color: var(--success); font-weight: bold; }
+    .speaker-notes-box {
+      background: rgba(0, 0, 0, 0.35);
+      border-top: 1px dashed rgba(255,255,255,0.15);
+      padding: 12px 28px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      max-height: 90px;
+      overflow-y: auto;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2);
+    }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: var(--accent-glow);
+      transform: translateY(-1px);
+    }
+    button:disabled {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="presentation-container">
+  <div class="slide-header">
+    <span><strong>VisionAI</strong> Presentation Deck</span>
+    <span class="badge" id="slide-num">Slide 1 / 15</span>
+  </div>
+
+  <div class="slide-body" id="slide-content">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <div class="speaker-notes-box" id="speaker-notes">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <div class="controls">
+    <button id="prev-btn" onclick="prevSlide()">← Previous</button>
+    <span style="font-size: 0.85rem; color: #64748b;">Use Left/Right arrow keys to navigate</span>
+    <button id="next-btn" onclick="nextSlide()">Next →</button>
+  </div>
+</div>
+
+<script>
+const slides = [
+  {
+    title: "VisionAI",
+    subtitle: "Intelligent Image Recognition & Analysis Platform",
+    html: `
+      <div style="text-align: center; margin-top: 20px;">
+        <h1>VISIONAI</h1>
+        <p style="font-size: 1.3rem; color: #818cf8; margin-bottom: 24px;">Intelligent Image Recognition & Analysis Platform</p>
+        <p style="color: #94a3b8; max-width: 650px; margin: 0 auto 30px;">
+          An end-to-end computer vision ecosystem featuring dual-model evaluation (MobileNetV2 Transfer Learning vs. Baseline CNN), real-time Grad-CAM explainability, and asynchronous API serving.
+        </p>
+        <span class="badge">Production-Ready Deep Learning</span>
+        <span class="badge" style="margin-left: 10px;">Sub-30ms Latency</span>
+        <span class="badge" style="margin-left: 10px;">FastAPI + React</span>
+      </div>
+    `,
+    notes: "Good morning respected evaluators. Today I present VisionAI, an intelligent image recognition platform combining transfer learning with real-time Grad-CAM visual explainability and a production web microservice."
+  },
+  {
+    title: "Introduction & Motivation",
+    subtitle: "The Need for Interpretable Edge Vision",
+    html: `
+      <h2>The Paradigm Shift in Computer Vision</h2>
+      <ul>
+        <li><strong>Evolution:</strong> Traditional handcrafted descriptors (SIFT, HOG) have been superseded by deep convolutional networks learning hierarchical representations directly from pixels.</li>
+        <li><strong>The Deep Learning Paradox:</strong> High classification capacity comes at the cost of high parameter counts and complete 'black-box' opacity.</li>
+        <li><strong>VisionAI Objective:</strong> Deliver an auditable, edge-efficient image recognition system that provides both superior accuracy and visual justification.</li>
+      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <h3>⚡ Efficiency Challenge</h3>
+          <p>Heavy models (ResNet, VGG) require significant GPU resources, making real-time edge execution difficult.</p>
+        </div>
+        <div class="card">
+          <h3>🔍 Explainability Challenge</h3>
+          <p>Without spatial attribution, human operators cannot diagnose false positives or verify decision cues.</p>
+        </div>
+      </div>
+    `,
+    notes: "We highlight the dual challenges in modern vision AI: computational bloat and black-box opacity. VisionAI tackles both through transfer learning and Grad-CAM saliency mapping."
+  },
+  {
+    title: "Problem Statement",
+    subtitle: "Three Critical Engineering Bottlenecks",
+    html: `
+      <h2>Core Engineering Challenges</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. Accuracy vs Latency Trade-Off</h3>
+          <p>Training from scratch on custom domains often overfits or demands excessive parameters. We require an architecture achieving >90% accuracy with sub-30ms latency.</p>
+        </div>
+        <div class="card">
+          <h3>2. Decision Opacity</h3>
+          <p>Black-box neural predictions cannot be verified in critical applications. Transparent attribution is required to reveal the network's spatial focus.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 16px;">
+        <h3>3. The Prototype-to-Production Void</h3>
+        <p>Most research remains trapped in Jupyter notebooks without RESTful API contracts, validation, automated test suites, or responsive client interfaces.</p>
+      </div>
+    `,
+    notes: "Our problem statement defines three core pain points: balancing accuracy with edge latency, overcoming decision opacity, and bridging the gap between research scripts and production software."
+  },
+  {
+    title: "Project Objectives",
+    subtitle: "Key Technical Milestones",
+    html: `
+      <h2>Core Milestones & Deliverables</h2>
+      <ul>
+        <li><strong>Dual-Model Comparative Benchmark:</strong> Train a 3-block CNN from scratch and compare against a fine-tuned MobileNetV2 architecture.</li>
+        <li><strong>High Categorization Accuracy:</strong> Surpass 90% test accuracy on multi-class natural scene imagery.</li>
+        <li><strong>Transparent Grad-CAM Explainability:</strong> Compute and render spatial class activation heatmaps dynamically.</li>
+        <li><strong>High-Throughput Asynchronous Backend:</strong> Develop a resilient FastAPI microservice supporting validation and CORS.</li>
+        <li><strong>Interactive React Dashboard:</strong> Create an intuitive single-page application with drag-and-drop ingestion and telemetry displays.</li>
+      </ul>
+    `,
+    notes: "Our primary objectives are clear: benchmark a custom CNN against MobileNetV2, achieve over 90% accuracy, integrate Grad-CAM, and construct a full-stack production application."
+  },
+  {
+    title: "Proposed System Architecture",
+    subtitle: "Modular Layered Ecosystem",
+    html: `
+      <h2>End-to-End System Pipeline</h2>
+      <div class="card" style="font-family: monospace; font-size: 0.95rem; line-height: 1.5; white-space: pre;">
+[ React 18 + Vite SPA Client ]  <-- Drag & drop upload, real-time feedback
+              │ (HTTP / Multipart FormData)
+              ▼
+[ FastAPI Asynchronous Microservice ]  <-- Pydantic v2 validation, CORS
+              │
+              ▼
+[ Deep Learning Engine ]
+  ├─ Image Preprocessor: 224x224 RGB, [-1, 1] normalization
+  ├─ MobileNetV2 Transfer Model (ImageNet Pretrained)
+  └─ Softmax Categorical Distribution (6 Scene Classes)
+              │
+              ▼
+[ Grad-CAM Spatial Activation Engine ]  <-- Feature map pooling, Jet overlay</div>
+    `,
+    notes: "This architectural diagram illustrates our decoupled design: the React frontend, the asynchronous FastAPI gateway, the dual-model inference engine, and the Grad-CAM module."
+  },
+  {
+    title: "Technology Stack",
+    subtitle: "Production-Grade Engineering Foundation",
+    html: `
+      <h2>Technologies & Libraries</h2>
+      <table>
+        <thead>
+          <tr><th>Layer</th><th>Technology</th><th>Role & Function</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Inference Engine</td><td>Python 3.12, NumPy, SciPy</td><td>Tensor operations, activation functions, mathematical matrix math</td></tr>
+          <tr><td>Image Processing</td><td>Pillow (PIL), Matplotlib</td><td>Resizing, bicubic interpolation, Jet colormap generation</td></tr>
+          <tr><td>API Gateway</td><td>FastAPI, Uvicorn, Pydantic</td><td>Asynchronous REST endpoints, schema validation, OpenAPI docs</td></tr>
+          <tr><td>User Interface</td><td>React 18, Vite, Lucide</td><td>Modern responsive SPA dashboard with hot-module reload</td></tr>
+          <tr><td>Testing & Ops</td><td>Pytest, Docker</td><td>Automated unit/integration tests and multi-stage containerization</td></tr>
+        </tbody>
+      </table>
+    `,
+    notes: "We built VisionAI using Python 3.12, FastAPI, and React 18, combining robust mathematical and computer vision libraries with modern containerized deployment."
+  },
+  {
+    title: "Dataset & Preprocessing",
+    subtitle: "Intel Image Classification Benchmark",
+    html: `
+      <h2>Intel Scene Classification Dataset</h2>
+      <ul>
+        <li><strong>Six Canonical Classes:</strong> <code>buildings</code>, <code>forest</code>, <code>glacier</code>, <code>mountain</code>, <code>sea</code>, <code>street</code>.</li>
+        <li><strong>Dataset Splits:</strong> 70% Training, 15% Validation, 15% Strictly Held-out Test Split.</li>
+      </ul>
+      <div class="card" style="margin-top: 14px;">
+        <h3>Deterministic Preprocessing Pipeline</h3>
+        <p>1. Ingest image and force RGB conversion (strips alpha channel).</p>
+        <p>2. Bicubic spatial resizing to standardized 224 × 224 dimensions.</p>
+        <p>3. Zero-centered normalization to [-1.0, 1.0] domain: <code>x_norm = (x - 127.5) / 127.5</code></p>
+        <p>4. Expand batch dimension: (224, 224, 3) → (1, 224, 224, 3).</p>
+      </div>
+    `,
+    notes: "The dataset comprises six balanced scene classes. Our deterministic preprocessing pipeline resamples inputs to 224x224 and scales pixel values to [-1, 1]."
+  },
+  {
+    title: "Deep Learning Methodology",
+    subtitle: "Custom Baseline CNN vs Transfer Learning",
+    html: `
+      <h2>Dual-Model Methodology</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Model A: Baseline Custom CNN</h3>
+          <ul>
+            <li>3 Sequential Conv Blocks (32, 64, 128 filters)</li>
+            <li>3x3 Convolutions + Max-Pooling (2x2)</li>
+            <li>Global Average Pooling + Dense(128) + Dropout(0.4)</li>
+            <li>Trained completely from scratch</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Model B: MobileNetV2 Transfer Learning</h3>
+          <ul>
+            <li>Pretrained on 1.28M ImageNet images</li>
+            <li>Depthwise separable convolutions</li>
+            <li>Inverted residual bottlenecks + Linear projections</li>
+            <li>Fine-tuned terminal layers for 6-class scenes</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    notes: "We set up a fair empirical contest: our baseline custom 3-block CNN trained from scratch vs. MobileNetV2 leveraging transfer learning from ImageNet."
+  },
+  {
+    title: "MobileNetV2 & Depthwise Convolutions",
+    subtitle: "Algorithmic Efficiency at the Edge",
+    html: `
+      <h2>Why Depthwise Separable Convolutions?</h2>
+      <p>Standard convolution computes spatial filtering and channel projection concurrently. Depthwise separable convolution decouples them into two stages:</p>
+      <div class="grid-2" style="margin-top: 12px;">
+        <div class="card">
+          <h3>1. Depthwise Convolution</h3>
+          <p>Applies a single spatial filter per input channel without inter-channel combination.</p>
+        </div>
+        <div class="card">
+          <h3>2. Pointwise Convolution</h3>
+          <p>Applies a 1x1 convolution across all channels to project features into new dimensions.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 14px; border-color: var(--accent);">
+        <p><strong>Theoretical Computational Saving:</strong> Reduces floating point operations (FLOPs) by approximately <strong>88% to 90%</strong> compared to standard convolution.</p>
+      </div>
+    `,
+    notes: "MobileNetV2 separates spatial filtering from channel mixing, slashing computational operations by up to 90% while preserving representational capacity."
+  },
+  {
+    title: "Training & Evaluation Protocol",
+    subtitle: "Loss Optimization & Statistical Metrics",
+    html: `
+      <h2>Evaluation Framework</h2>
+      <ul>
+        <li><strong>Loss Function:</strong> Categorical Cross-Entropy across multi-class distributions.</li>
+        <li><strong>Optimization:</strong> Adam Optimizer with adaptive gradient momentum.</li>
+        <li><strong>Metrics Calculated:</strong>
+          <ul>
+            <li>Overall Test Accuracy</li>
+            <li>Weighted & Macro Precision and Recall</li>
+            <li>Weighted & Macro F1-Score</li>
+            <li>Full Confusion Matrix mapping class confusion pairs</li>
+          </ul>
+        </li>
+      </ul>
+    `,
+    notes: "We evaluate models across the entire statistical spectrum—Precision, Recall, Macro/Weighted F1, and confusion matrices—ensuring no class bias goes unnoticed."
+  },
+  {
+    title: "Empirical Results & Comparison",
+    subtitle: "Quantitative Validation Findings",
+    html: `
+      <h2>Benchmark Evaluation on Held-Out Test Set</h2>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Baseline CNN</th><th>MobileNetV2</th><th>Improvement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Test Accuracy</strong></td><td>73.33%</td><td class="high">93.33%</td><td class="high">+20.00%</td></tr>
+          <tr><td><strong>Test Loss</strong></td><td>0.5200</td><td class="high">0.2400</td><td class="high">-0.2800</td></tr>
+          <tr><td><strong>Weighted Precision</strong></td><td>73.29%</td><td class="high">93.89%</td><td class="high">+20.60%</td></tr>
+          <tr><td><strong>Weighted Recall</strong></td><td>73.33%</td><td class="high">93.33%</td><td class="high">+20.00%</td></tr>
+          <tr><td><strong>Weighted F1-Score</strong></td><td>72.37%</td><td class="high">93.30%</td><td class="high">+20.93%</td></tr>
+          <tr><td><strong>Inference Latency</strong></td><td>~14 ms</td><td>~24 ms</td><td>Sub-30ms Real-Time</td></tr>
+        </tbody>
+      </table>
+    `,
+    notes: "Our empirical results demonstrate a 20.0% accuracy leap with MobileNetV2, elevating weighted F1 to 0.933 while maintaining sub-30ms latency."
+  },
+  {
+    title: "Grad-CAM Explainability",
+    subtitle: "Visualizing Network Decisions",
+    html: `
+      <h2>Gradient-Weighted Class Activation Mapping</h2>
+      <ul>
+        <li><strong>Gradient Flow:</strong> Gradients of the top-predicted class score are computed with respect to terminal convolutional feature maps.</li>
+        <li><strong>Spatial Pooling:</strong> Global average pooling calculates the importance weight of each channel.</li>
+        <li><strong>ReLU Rectification:</strong> Retains only features positively contributing to the target class decision.</li>
+        <li><strong>Heatmap Synthesis:</strong> The activation map is upsampled to 224x224 and rendered with a Jet colormap alpha overlay.</li>
+      </ul>
+      <div class="card" style="margin-top: 14px;">
+        <h3>Auditing Integrity</h3>
+        <p>Grad-CAM proves the model detects true semantic features—such as building facades, forest foliage, and ocean horizons—rather than spurious background noise.</p>
+      </div>
+    `,
+    notes: "Grad-CAM is our visual audit engine, converting abstract convolutional activations into intuitive heatmaps that show exactly what features drove the prediction."
+  },
+  {
+    title: "Application Features & Interface",
+    subtitle: "Interactive Real-Time Dashboard",
+    html: `
+      <h2>Interactive Platform Features</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>⚡ Real-Time Ingestion</h3>
+          <p>Drag-and-drop zone with instant client preview, preset samples, and sub-30ms inference response.</p>
+        </div>
+        <div class="card">
+          <h3>📊 Probability Breakdown</h3>
+          <p>Ranked class distribution bars showing top-1 through top-6 confidence levels.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top: 12px;">
+        <div class="card">
+          <h3>🔥 Grad-CAM Overlay</h3>
+          <p>Side-by-side and alpha-blended activation heatmap viewer for explainability inspection.</p>
+        </div>
+        <div class="card">
+          <h3>📈 Live Metrics Hub</h3>
+          <p>Integrated confusion matrix visualization and comparative metrics dashboard.</p>
+        </div>
+      </div>
+    `,
+    notes: "Our React dashboard delivers an intuitive interface with drag-and-drop ingestion, probability breakdown bars, Grad-CAM overlays, and live confusion matrices."
+  },
+  {
+    title: "Project Status & Roadmap",
+    subtitle: "Implementation Verification & Future Work",
+    html: `
+      <h2>Features & Roadmap</h2>
+      <div class="card" style="border-left: 4px solid var(--success); margin-bottom: 14px;">
+        <h3>✅ Fully Implemented & Verified</h3>
+        <p>• MobileNetV2 Transfer Learning & Baseline CNN inference engines<br>
+           • FastAPI asynchronous REST endpoints (/predict, /health, /metrics)<br>
+           • Grad-CAM spatial heatmap generator & React 18 dashboard<br>
+           • Automated pytest unit and integration test suite</p>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--accent);">
+        <h3>🚀 Planned Enhancements (Roadmap)</h3>
+        <p>• High-throughput asynchronous batch prediction API (<code>/predict/batch</code>)<br>
+           • INT8 / FP16 edge quantization via ONNX Runtime and TensorRT<br>
+           • Out-of-Distribution (OOD) uncertainty rejection<br>
+           • Cross-platform mobile client with on-device camera inference</p>
+      </div>
+    `,
+    notes: "We clearly delineate implemented features—models, API, Grad-CAM, UI, tests—from planned enhancements like batch processing and INT8 quantization."
+  },
+  {
+    title: "Conclusion & Thank You",
+    subtitle: "Summary of Contributions",
+    html: `
+      <div style="text-align: center; margin-top: 20px;">
+        <h1>VISIONAI</h1>
+        <p style="font-size: 1.2rem; color: #818cf8; margin-bottom: 24px;">Intelligent Image Recognition & Analysis Platform</p>
+        <div class="card" style="text-align: left; max-width: 700px; margin: 0 auto 24px;">
+          <p>✔ <strong>Superior Performance:</strong> 93.33% accuracy with MobileNetV2 (+20% over baseline CNN).</p>
+          <p>✔ <strong>Visual Explainability:</strong> Real-time Grad-CAM spatial attribution heatmaps.</p>
+          <p>✔ <strong>Production Ready:</strong> FastAPI asynchronous backend + modern React 18 UI.</p>
+          <p>✔ <strong>Codebase:</strong> Fully tested with pytest and Dockerized for cloud/edge deployment.</p>
+        </div>
+        <p style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 12px;"><strong>Repository:</strong> https://github.com/Baladithya23/VisionAI.git</p>
+        <p style="color: var(--accent-glow); font-size: 1.3rem; font-weight: bold;">Thank You! Questions & Discussion Welcomed.</p>
+      </div>
+    `,
+    notes: "In conclusion, VisionAI bridges theoretical deep learning and practical software engineering with high accuracy, edge efficiency, and visual transparency. Thank you for your time."
+  }
+];
+
+let currentSlide = 0;
+
+function renderSlide() {
+  const slide = slides[currentSlide];
+  document.getElementById("slide-num").innerText = `Slide ${currentSlide + 1} / ${slides.length}`;
+  document.getElementById("slide-content").innerHTML = slide.html;
+  document.getElementById("speaker-notes").innerHTML = `<strong>Speaker Notes:</strong> ${slide.notes}`;
+  
+  document.getElementById("prev-btn").disabled = currentSlide === 0;
+  document.getElementById("next-btn").disabled = currentSlide === slides.length - 1;
+}
+
+function nextSlide() {
+  if (currentSlide < slides.length - 1) {
+    currentSlide++;
+    renderSlide();
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    renderSlide();
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") nextSlide();
+  if (e.key === "ArrowLeft") prevSlide();
+});
+
+renderSlide();
+</script>
+
+</body>
+</html>

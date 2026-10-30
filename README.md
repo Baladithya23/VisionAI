@@ -4,7 +4,15 @@
 
 ---
 
-## 1. System Architecture
+## 1. Documentation & Deliverables
+
+- **Deliverable 1 (Technical & Academic Report):** [Detailed Project Documentation (30 Comprehensive Sections)](file:///C:/Users/Pream%20Kumar/.gemini/antigravity/scratch/VisionAI/docs/PROJECT_DOCUMENTATION.md)
+- **Deliverable 2 (Presentation Deck & Notes):** [15-Slide Presentation Deck with Speaker Notes](file:///C:/Users/Pream%20Kumar/.gemini/antigravity/scratch/VisionAI/docs/PRESENTATION_SLIDES.md)
+- **Interactive Presentation Deck (HTML5):** [Interactive Slide Viewer (`docs/presentation.html`)](file:///C:/Users/Pream%20Kumar/.gemini/antigravity/scratch/VisionAI/docs/presentation.html)
+
+---
+
+## 2. System Architecture
 
 ```
 [ User Browser / Client ]
